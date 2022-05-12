@@ -18,7 +18,20 @@ describe Bookmark do
       expect(bookmarks).to include("http://www.google.com")
     end
   end
+
+  describe '.add' do
+    it 'adds a bookmark' do
+      Bookmark.add("http://www.wikipedia.org")
+      connection = PG.connect(dbname: 'bookmark_manager_test') 
+
+      result = connection.exec('SELECT * FROM bookmarks;')
+      bookmarks = result.map{|bookmark| bookmark['url']}
+
+      expect(bookmarks).to include("http://www.wikipedia.org")
+    end
+  end 
 end
+
 
 # Test drive a refactor of the code to use a Model, that returns the list of bookmarks.
 # You'll probably want to create a Bookmark model that responds to the class method .all with a hard-coded array of Bookmark instances.
