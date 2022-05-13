@@ -1,5 +1,7 @@
 require 'bookmark'
 require 'database_helper'
+require 'pg'
+#WE DIDN'T REQUIRE PG >.<
 
 
 describe Bookmark do
@@ -28,7 +30,8 @@ describe Bookmark do
       persisted_data = persisted_data(id: bookmark.id)
 
       expect(bookmark).to be_a Bookmark
-      expect(bookmark.id).to eq persisted_data.first['id']
+      expect(bookmark.id).to eq persisted_data['id']
+      # ^^^was originally .to eq persisted_data.first['id']
       expect(bookmark.title).to eq 'Wikipedia'
       expect(bookmark.url).to eq "http://www.wikipedia.org"
       
