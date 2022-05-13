@@ -3,7 +3,8 @@ require 'pg'
 class Bookmark
 
 
-  attr_reader :id, :url, :title, 
+  attr_reader :id, :url, :title
+  #there was an extra bloody comma at the end of these attr_readers, god bless Erlantz
 
   def initialize(id:, url:, title:)
     @id = id

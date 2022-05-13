@@ -20,7 +20,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/added' do
-    Bookmark.add(title: params[:bookmark_title], url: params[:bookmark_url])
+    Bookmark.add(url: params[:bookmark_url], title: params[:bookmark_title])
     # these were  ^^missing key word argument tags,^^ i.e. title:, url
     redirect '/bookmarks'
   end 
